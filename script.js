@@ -14,7 +14,7 @@ function getGeneratedPassword(allowedChars){
         // adds each selected character to the password string
         password += selectedChar;
     }
-    return password
+    return password;
 }
 
 // gets all of the user preferred characters based on responses to the prompts - returns preferred chars 
@@ -28,43 +28,55 @@ function getAllowedChars() {
     
     passwordLength = window.prompt("How many characters would you like your password to contain?");
 
+    // check if user cancels out of prompt
     if(!passwordLength){
-        alert('Goodbye');
+        alert("Goodbye");
         return;
     }
-    const inputIsANumber = !isNaN(parseInt(passwordLength))
-    const isValidLength = passwordLength >= 8 && passwordLength <= 128;
 
-    if (!inputIsANumber || !isValidLength){
+    // check that input is a valid number
+    const inputIsANumber = !isNaN(parseInt(passwordLength));
+    // check if valid length
+    const isValidLength = passwordLength >= 8 && passwordLength <= 128;
+    // checks whether it's ok to continue with prompts
+    const isNotOK = !inputIsANumber || !isValidLength;
+
+    if (isNotOK){
         alert('Please enter a valid number between 8 and 128, try again!');
         return;
     }
 
-    const shouldIncludeSpecialChars = window.confirm("Click ok to include special characters")
+    // prompts user for password requisites and if true adds char types to allowedChars variable
+    const shouldIncludeSpecialChars = window.confirm("Click ok to include special characters");
     if (shouldIncludeSpecialChars) {
-        allowedChars = allowedChars.concat(specialChars)
+        allowedChars = allowedChars.concat(specialChars);
     }
 
-    const shouldIncludeNumerics = window.confirm("Click ok to include numerics")
+    const shouldIncludeNumerics = window.confirm("Click ok to include numerics");
     if (shouldIncludeNumerics) {
-        allowedChars = allowedChars.concat(numerics)
+        allowedChars = allowedChars.concat(numerics);
     }
 
-    const shouldIncludeLowerAlpha = window.confirm("Click ok to include lowercase letters")
+    const shouldIncludeLowerAlpha = window.confirm("Click ok to include lowercase letters");
     if (shouldIncludeLowerAlpha) {
-        allowedChars = allowedChars.concat(alphaLower)
+        allowedChars = allowedChars.concat(alphaLower);
     }
 
-    const shouldIncludeUpperAlpha = window.confirm("Click ok to include uppercase letters")
+    const shouldIncludeUpperAlpha = window.confirm("Click ok to include uppercase letters");
     if (shouldIncludeUpperAlpha) {
-        allowedChars = allowedChars.concat(alphaUpper)
+        allowedChars = allowedChars.concat(alphaUpper);
     }
 
-      return allowedChars
+    // returns all collected prompt responses
+      return allowedChars;
            
 }
+
+    // 
 function generatePassword() {
+    // gets the requisite characters
     const allowedChars = getAllowedChars();
+    // returns the result of using the allowed chars to generate the password
     return getGeneratedPassword(allowedChars);
 
 
