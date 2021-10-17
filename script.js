@@ -6,13 +6,31 @@ function getAllowedChars() {
     const alphaLower = "abcdefghijklmnopqrstuvwxyz";
     const alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const specialChars = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+    const result = "";
+    let allowedChars = "";
 
-    const charsLength = window.prompt("How many characters would you like your password to contain?");
+    
+    let charsLength = window.prompt("How many characters would you like your password to contain?");
+    const inputIsANumber = !isNaN(parseInt(charsLength))
+    const isValidLength = charsLength >= 8 && charsLength <= 128;
+
+    if (!inputIsANumber || !isValidLength){
+        alert('Please enter a valid number between 8 and 128, try again!');
+        return;
+    }
+
+    const shouldIncludeSpecialChars = window.confirm("Click ok to include special characters")
+    if (shouldIncludeSpecialChars) {
+        allowedChars = allowedChars.concat(specialChars)
+    }
+
+    
+
+
+  
 }
-
 function generatePassword() {
     const allowChars = getAllowedChars();
-    const result = "";
 
 
 }
