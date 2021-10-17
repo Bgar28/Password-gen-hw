@@ -24,6 +24,22 @@ function getAllowedChars() {
         allowedChars = allowedChars.concat(specialChars)
     }
 
+    const shouldIncludeNumerics = window.confirm("Click ok to include numerics")
+    if (shouldIncludeNumerics) {
+        allowedChars = allowedChars.concat(numerics)
+    }
+
+    const shouldIncludeLowerAlpha = window.confirm("Click ok to include lowercase letters")
+    if (shouldIncludeLowerAlpha) {
+        allowedChars = allowedChars.concat(alphaLower)
+    }
+
+    const shouldIncludeUpperAlpha = window.confirm("Click ok to include uppercase letters")
+    if (shouldIncludeUpperAlpha) {
+        allowedChars = allowedChars.concat(alphaUpper)
+    }
+    
+    console.log(allowedChars);
     
 
 
