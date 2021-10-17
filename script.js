@@ -1,18 +1,39 @@
 // Assignment Code
 const generateBtn = document.querySelector("#generate");
+let passwordLength = 0;
 
+// generates the password 
+function getGeneratedPassword(allowedChars){
+    let password = "";
+    // iterates based on length of user's preferred password length
+    for(let i = 0; i <= passwordLength; i++) {
+        // gets random number based on number of allowed characters
+        const randomNumber = Math.floor(Math.random() * allowedChars.length);
+        // gets character from allowed character string based on random index
+        const selectedChar = allowedChars[randomNumber];
+        // adds each selected character to the password string
+        password += selectedChar;
+    }
+    return password
+}
+
+// gets all of the user preferred characters based on responses to the prompts - returns preferred chars 
 function getAllowedChars() {
     const numerics = "0123456789";
     const alphaLower = "abcdefghijklmnopqrstuvwxyz";
     const alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const specialChars = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-    const result = "";
     let allowedChars = "";
 
     
-    let charsLength = window.prompt("How many characters would you like your password to contain?");
-    const inputIsANumber = !isNaN(parseInt(charsLength))
-    const isValidLength = charsLength >= 8 && charsLength <= 128;
+    passwordLength = window.prompt("How many characters would you like your password to contain?");
+
+    if(!passwordLength){
+        alert('Goodbye');
+        return;
+    }
+    const inputIsANumber = !isNaN(parseInt(passwordLength))
+    const isValidLength = passwordLength >= 8 && passwordLength <= 128;
 
     if (!inputIsANumber || !isValidLength){
         alert('Please enter a valid number between 8 and 128, try again!');
@@ -38,15 +59,13 @@ function getAllowedChars() {
     if (shouldIncludeUpperAlpha) {
         allowedChars = allowedChars.concat(alphaUpper)
     }
-    
-    console.log(allowedChars);
-    
 
-
-  
+      return allowedChars
+           
 }
 function generatePassword() {
-    const allowChars = getAllowedChars();
+    const allowedChars = getAllowedChars();
+    return getGeneratedPassword(allowedChars);
 
 
 }
