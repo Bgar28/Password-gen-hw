@@ -6,3 +6,6 @@ The password can include numbers, uppercase/lowercase letters, and/or special ch
 The password has to be between 8 and 128 characters long.
 After the user picks their desired characters to be used in the password, the password is then generated and displayed in the "Your Secure Password" text area.
 
+![screenshot of newly generated password](images/password-gen-screenshot.png)
+
+https://bgar28.github.io/Password-gen-hw/
